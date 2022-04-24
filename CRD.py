@@ -134,7 +134,9 @@ print(Data)
 #NOTE: This is the main code, this should largely stay the same
 #throught the conversion. Let me know through push requests if
 #you would like to make changes to this section.
-
+##########################################################################################################
+# Main Code
+##########################################################################################################~
 while True:
     UID = nfcRead(5,'!')
 
