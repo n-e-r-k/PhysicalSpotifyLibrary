@@ -21,3 +21,12 @@
     <li>RC522 RFID Module</li>
     <li>SG90 9g Micro Servo</li>
 </ul>
+
+<h2>Dependencies/Requirements</h2>
+
+<ul>
+    <li>python-3.9.7</li>
+    <li>spotipy-2.19.0</li>
+    <li>pigpio-3.3.1</li>
+    <li>pi-rc522-2.2.1</li>
+</ul>

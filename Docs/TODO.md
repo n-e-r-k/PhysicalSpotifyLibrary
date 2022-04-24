@@ -5,11 +5,16 @@
 <ul>
     <li>Learn Basic Markdown Syntax</li>
     <ul>
-    <li>Brayden, this is for you to help with documentation creation and proofreading.<br><https://www.markdownguide.org/basic-syntax/><br>Seems to be a solid website to study this. Delete this comment once finished.</li>
+    <li>Brayden, this is for you to help with the documentation creation and the proofreading. I found a solid website to learn and put it in the "Development Documentation" area. Markdown is basicly html. Delete this comment once finished.</li>
     </ul>
-    <li> Create the Circuitry</li>
+    <li>Create the Circuitry</li>
     <li>Upload Circuitry DOC</li>
-    <li></li>
-    <li></li>
-    <li></li>
 </ul>
+
+<h1>Development Documentation</h1>
+
+[Markdown Reference](https://www.markdownguide.org/basic-syntax/)
+
+<h1>Development Notes/Messages</h1>
+
+><strong>Jacob - </strong>This is a test message to show how this section can be used. Delete if something else needs to be said.

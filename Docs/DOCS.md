@@ -1,7 +1,5 @@
 <h2>Wiring</h2>
 
-***
-
 <h3>RC522</h3>
 
 <table>
@@ -98,4 +96,18 @@
 </tbody>
 </table>
 
+<h2>Printing the Case</h2>
 
+<h2>Assembly</h2>
+
+
+<h2>Software</h2>
+    <p>The software is built in python and running on top of Raspbian Linux in a light, terminal-only configuration. It reads cards using the pi-rc522 library. From there depending on the information stored the local {table databace}-Replace will ouput a code that the Spotipy library will ask spotify to play on specified device. While this is happening, the Raspberry Pi is also repeatedly checking to see if the [EJECT] button is pressed. If the button is being pressed, the pigpio library will control the servo to eject the disk. </p>
+
+[Link to RC-552 GitHub](https://github.com/ondryaso/pi-rc522)
+<br>
+[Link to Spotipy Docs](https://spotipy.readthedocs.io/en/)
+<br>
+[Link to pigpio GitHub](https://github.com/fivdi/pigpio#servo-control)
+
+<h2>Use</h2>
