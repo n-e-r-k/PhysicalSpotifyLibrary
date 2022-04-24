@@ -1,4 +1,4 @@
-# CSC132MusicBox
+# Physical Spotify Library (PSL)
 <h2>Project Name</h2>
 
 *Physical Spotify Library (PSL)*
