@@ -1,0 +1,1 @@
+Here is our current directory full of the album artwork we plan to use.
