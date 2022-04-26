@@ -2,7 +2,6 @@
 
 import serial
 import time
-import pickle5 as pickle
 import os
 import json
 import spotipy
@@ -41,8 +40,8 @@ print('Global Variables Assigned')
 #you.
 
 username = ''
-SPOTIPY_CLIENT_ID = ''
-SPOTIPY_CLIENT_SECRET=''
+SPOTIPY_CLIENT_ID = 'c2f887c733274f7087836d78574fb588'
+SPOTIPY_CLIENT_SECRET='e7be691ec4254d839d0552a085736089'
 SPOTIPY_REDIRECT_URI='https://www.google.com/'
 SpotipyDevice = ''
 scope = 'user-read-private user-read-playback-state user-modify-playback-state'
