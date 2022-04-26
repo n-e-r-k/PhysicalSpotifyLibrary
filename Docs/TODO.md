@@ -18,6 +18,8 @@
 
     - PSL_Player
         - Taking the PSL library create the disk control logic.
+        
+        - Check the "Living with Cyber" given linux image and try to understand how they connect to LaTechWPA2.
 
 
     - PSL_Connect (OPTIONAL)
@@ -30,7 +32,7 @@
 
 - Media
 
-    - Two Advertisements (1980s themed)
+    - Two Advertisements (1980s themed) (JB MicroComputing)
 
     - Front Decal
 
