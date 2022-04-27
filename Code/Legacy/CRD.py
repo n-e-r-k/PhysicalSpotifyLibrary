@@ -2,7 +2,6 @@
 
 import serial
 import time
-import pickle5 as pickle
 import os
 import json
 import spotipy
