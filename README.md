@@ -29,4 +29,6 @@
     <li>spotipy-2.19.0</li>
     <li>pigpio-3.3.1</li>
     <li>pi-rc522-2.2.1</li>
+    <li>spidev-x.x.x</li>
+    <li>RPI.GPIO-x.x.x {yeah i dont know if this is the same as pigpio. Needed for pi-rc522}</li>
 </ul>
