@@ -35,6 +35,9 @@ class PSL():
     def load(self):
         self.database = {}
 
+        r = csv.reader(open(self.libraryDirectory, newline = ''), delimiter = ',')
+        
+             
         #Data here uwu
 
         pass
@@ -42,7 +45,7 @@ class PSL():
     def save(self):
         w = csv.writer(open(self.libraryDirectory, "W"))
 
-        # {CDI:URI} Every cassette will have a URI attached after it is written
+        # {CDI:URI}
         for cid, uri in self.database.items():
             w.writerow([cid, uri])
         
