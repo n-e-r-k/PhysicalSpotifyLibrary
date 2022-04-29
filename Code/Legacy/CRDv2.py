@@ -1,6 +1,6 @@
 
 import time
-import pickle5 as pickle
+import pickle
 import os
 import spotipy
 import spotipy.util as util
@@ -17,7 +17,7 @@ DC = False
 username = ''
 SPOTIPY_CLIENT_ID = ''
 SPOTIPY_CLIENT_SECRET=''
-SPOTIPY_REDIRECT_URI='https://www.google.com/'
+SPOTIPY_REDIRECT_URI='http://127.0.0.1:9090'
 SpotipyDevice = ''
 scope = 'user-read-private user-read-playback-state user-modify-playback-state'
 

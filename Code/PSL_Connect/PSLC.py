@@ -5,19 +5,24 @@
 from tkinter import*
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
+import sys
+from pprint import pprint
 
+username = ''
+SPOTIPY_CLIENT_ID = ''
+SPOTIPY_CLIENT_SECRET=''
+SPOTIPY_REDIRECT_URI='https://www.google.com/'
+SpotipyDevice = ''
 class PSL_C(Canvas): 
-    
-    lz_uri = 'spotify:artist:36QJpDe2go2KgaRleHCDTp'
+   
+    if len(sys.argv) > 1:
+        urn = sys.argv[1]
+    else:
+        urn = 'spotify:album:5yTx83u3qerZF7GRJu7eFk'
 
-    spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
-    results = spotify.artist_top_tracks(lz_uri)
-
-    for track in results['tracks'][:10]:
-        print('track    : ' + track['name'])
-        print('audio    : ' + track['preview_url'])
-        print('cover art: ' + track['album']['images'][0]['url'])
-        print()
+    sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
+    album = sp.album(urn)
+    pprint(album)
 
 
 #################################################################################

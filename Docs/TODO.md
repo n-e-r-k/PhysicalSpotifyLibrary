@@ -32,6 +32,10 @@
 
         - Communication between the PSL and PSL_
 
+        - TKinter display image (look into)
+
+        - Header update with name of song, artists name too(optional)
+
 - Media
 
     - Two Advertisements (1980s themed) (JB MicroComputing)
