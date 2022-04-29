@@ -1,44 +1,73 @@
 # Jacob France & Brayden Fisher
 # PSL Library
 
+#NOTE: Double comments are meant to be removed when running on the raspberry pi.
+#PC vs PCL version? - yeah that makes sense. Remind brayden to incorperate this library into his code
+#so that way the consumer 
+
 #--- Import ---#
-from pirc522 import RFID
+##from pirc522 import RFID
 
 import spotipy
 import spotipy.util as util
 
-import time
 import os
 import csv
 from json.decoder import JSONDecodeError
 
 class PSL():
-    def __init__(self, spotifyUsername, spotifyClientID, spotifyClientSecret, spotifyDevice, libraryDirectory = '/data.csv', redirectURL = 'http://127.0.0.1:9090', scope = 'user-read-private user-read-playback-state user-modify-playback-state', debugStatus = 1):
+    def __init__(self, credentialsDirectory, scope = 'user-read-private user-read-playback-state user-modify-playback-state', debugStatus = 1):
         #Declairing Class Variables
-        self.spotifyUsername = spotifyUsername
-        self.spotifyClientID = spotifyClientID
-        self.spotifyClientSecret = spotifyClientSecret
-        self.spotifyDevice = spotifyDevice
-        self.libraryDirectory = libraryDirectory
-        self.redirectURL = redirectURL
         self.scope = scope
         self.debugStatus = debugStatus
 
-        self.rfid = RFID()
+        ##self.rfid = RFID()
 
         #Setup
+        self.loadCredentials(credentialsDirectory)
         self.connect()
         
+
+    def loadCredentials(self, directory):
+
+        csvFile = open(directory, mode = 'r')
+
+        credentialsImport = csv.reader(csvFile, delimiter = ',')
+        credentialsList = []
+
+        for row in credentialsImport:
+            credentialsList.append(row)
+
+        print(credentialsList)
+
+        #TBH this section probably goes beyond the scope of the project and is a waste of time...
+        #But I do wanna see it work tho.
+
+        self.spotifyUsername = str(credentialsList[0])
+        self.spotifyClientID = str(credentialsList[1])
+        self.spotifyClientSecret = str(credentialsList[2])
+        self.spotifyDevice = str(credentialsList[3])
+        self.libraryDirectory = str(credentialsList[4])
+        self.redirectURL = str(credentialsList[5])
+
+        #ISSUE: It seems that the stringed verstion of the list entries are apearing with the brackets of a list in these fields?
+        #IDK its like 2:31 am and I need to sleep. Good luck future me.
+
+        print(self.spotifyUsername)
+
+        csvFile.close()
+
+        self.debugMessage(1, f"Credentials imported from {directory} correctly.")
 
 
     
     def load(self):
+
         self.database = {}
 
         export = csv.DictReader(open(self.libraryDirectory, mode = 'r'))
 
-        print(export)          
-        #Data here uwu
+        print(export)
 
         pass
 
@@ -59,9 +88,9 @@ class PSL():
         except (AttributeError, JSONDecodeError):
 
             #Remove the local .cache-username file
-            os.remove(f".cache-{self.username}")
+            os.remove(f".cache-{self.spotifyUsername}")
             #Attempt again
-            token = util.prompt_for_user_token(self.username, self.scope)
+            token = util.prompt_for_user_token(self.spotifyUsername, self.scope)
 
         self.spotifyObject = spotipy.Spotify(auth=token)
 
@@ -87,6 +116,7 @@ class PSL():
 
         #Currently don't know if you can play any type of uri or
         #if only for single tracks.
+        
         self.spotifyObject.start_playback(uris=[uri])
 
     def eject(self):
@@ -101,6 +131,9 @@ class PSL():
         else:
             pass
 
-main = PSL()
 
-main.
+#Tell brayden to put this directory into somewhere not tracked by git for convience.
+#Also, we need to find a way to do a relative path to the python file. 'Cause, having
+#to do direct paths IN the code would ruin the "plug-and-play" -ability.
+main = PSL('')
+PSL.play('spotify:track:1NWK3gKPZPATIdSKLNGV8D')
