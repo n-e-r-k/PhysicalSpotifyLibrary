@@ -11,8 +11,15 @@ import spotipy
 import webbrowser
 import spotipy.util as util
 from json.decoder import JSONDecodeError
+
+username = 'Fish'
+SPOTIPY_CLIENT_ID = ''
+SPOTIPY_CLIENT_SECRET=''
+SPOTIPY_REDIRECT_URI='https://www.google.com/'
+scope = 'user-read-private user-read-playback-state user-modify-playback-state'
 class PSL_C(Canvas): 
-    
+    # TODO set up init function here
+    self.spotify = spotipy.Spotify(util.prompt_for_user_token(username, scope, SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET, SPOTIPY_REDIRECT_URI))
     # Get track information
     track = spotifyObject.current_user_playing_track()
     print(json.dumps(track, sort_keys=True, indent=4))
