@@ -35,9 +35,9 @@ class PSL():
     def load(self):
         self.database = {}
 
-        r = csv.reader(open(self.libraryDirectory, newline = ''), delimiter = ',')
-        
-             
+        export = csv.DictReader(open(self.libraryDirectory, mode = 'r'))
+
+        print(export)          
         #Data here uwu
 
         pass
@@ -92,10 +92,6 @@ class PSL():
     def eject(self):
         pass
 
-    def playAlbum(self, albumURI):
-        #Uneeded if the play() function can play a full albumURI
-        #Without needed it to be split into tracks.
-
     def cleanUp(self):
         self.rfid.cleanup()
 
@@ -104,3 +100,7 @@ class PSL():
             print(message)
         else:
             pass
+
+main = PSL()
+
+main.

@@ -1,12 +1,15 @@
 import spotipy
-from spotipy.oauth2 import SpotifyClientCredentials
+import spotipy.util as util
 
-SPOTIPY_CLIENT_ID = "c2f887c733274f7087836d78574fb588"
-SPOTIPY_CLIENT_SECRET = "e7be691ec4254d839d0552a085736089"
+username = ''
+SPOTIPY_CLIENT_ID = ''
+SPOTIPY_CLIENT_SECRET=''
+SPOTIPY_REDIRECT_URI='https://www.google.com/'
+scope = 'user-read-private user-read-playback-state user-modify-playback-state'
 
 lz_uri = 'spotify:artist:36QJpDe2go2KgaRleHCDTp'
 
-spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
+spotify = spotipy.Spotify(util.prompt_for_user_token(username, scope, SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET, SPOTIPY_REDIRECT_URI))
 results = spotify.artist_top_tracks(lz_uri)
 
 for track in results['tracks'][:10]:
