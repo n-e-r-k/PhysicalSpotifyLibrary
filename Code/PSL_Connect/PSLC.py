@@ -3,23 +3,25 @@
 # Purpose: Displays the spotify album cover
 ##################################################################################################
 from tkinter import*
-import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
-
+import os
+import sys
+import json
+import spotipy
+import webbrowser
+import spotipy.util as util
+from json.decoder import JSONDecodeError
 class PSL_C(Canvas): 
     
-    lz_uri = 'spotify:artist:36QJpDe2go2KgaRleHCDTp'
+    # Get track information
+    track = spotifyObject.current_user_playing_track()
+    print(json.dumps(track, sort_keys=True, indent=4))
+    print()
+    artist = track['item']['artists'][0]['name']
+    track = track['item']['name']
 
-    spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
-    results = spotify.artist_top_tracks(lz_uri)
-
-    for track in results['tracks'][:10]:
-        print('track    : ' + track['name'])
-        print('audio    : ' + track['preview_url'])
-        print('cover art: ' + track['album']['images'][0]['url'])
-        print()
-
-
+    if artist !="":
+        print("Currently playing " + artist + " - " + track)
 #################################################################################
 #
 # Main Code
