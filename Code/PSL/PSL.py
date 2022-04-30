@@ -1,13 +1,7 @@
 # Jacob France & Brayden Fisher
 # PSL Library
 
-#NOTE: Double comments are meant to be removed when running on the raspberry pi.
-#PC vs PCL version? - yeah that makes sense. Remind brayden to incorperate this library into his code
-#so that way the consumer 
-
 #--- Import ---#
-##from pirc522 import RFID
-
 import spotipy
 import spotipy.util as util
 
@@ -15,49 +9,58 @@ import os
 import csv
 from json.decoder import JSONDecodeError
 
+#--- Definitions ---#
 class PSL():
-    def __init__(self, credentialsDirectory, scope = 'user-read-private user-read-playback-state user-modify-playback-state', debugStatus = 1):
+    def __init__(self, credentialsDirectory, scope = 'user-read-private user-read-playback-state user-modify-playback-state', debugStatus = 1, connect = True, platform = "PI"):
         #Declairing Class Variables
         self.scope = scope
         self.debugStatus = debugStatus
 
-        ##self.rfid = RFID()
+        #Setting platform
+        if platform == "PC":
+            pass
+        elif platform == "PI":
+            from pirc522 import RFID
+            self.rfid = RFID()
 
-        #Setup
+        #Establish connection to spotify
         self.loadCredentials(credentialsDirectory)
-        self.connect()
+        if connect:
+            self.connect()
         
 
     def loadCredentials(self, directory):
+
+        #Open and read from the csv in the given directory.
+        #Then assign the class variables from the information 
+        #that was listed on the file.
 
         csvFile = open(directory, mode = 'r')
 
         credentialsImport = csv.reader(csvFile, delimiter = ',')
         credentialsList = []
 
+        #Convert the interable object into a list.
         for row in credentialsImport:
-            credentialsList.append(row)
+            credentialsList.append(row[0])
 
-        print(credentialsList)
+        self.spotifyUsername = credentialsList[0]
+        self.spotifyClientID = credentialsList[1]
+        self.spotifyClientSecret = credentialsList[2]
+        self.spotifyDevice = credentialsList[3]
+        self.libraryDirectory = credentialsList[4]
+        self.redirectURL = credentialsList[5]
 
-        #TBH this section probably goes beyond the scope of the project and is a waste of time...
-        #But I do wanna see it work tho.
-
-        self.spotifyUsername = str(credentialsList[0])
-        self.spotifyClientID = str(credentialsList[1])
-        self.spotifyClientSecret = str(credentialsList[2])
-        self.spotifyDevice = str(credentialsList[3])
-        self.libraryDirectory = str(credentialsList[4])
-        self.redirectURL = str(credentialsList[5])
-
-        #ISSUE: It seems that the stringed verstion of the list entries are apearing with the brackets of a list in these fields?
-        #IDK its like 2:31 am and I need to sleep. Good luck future me.
-
-        print(self.spotifyUsername)
-
+        #Cleanup by closing the file.
         csvFile.close()
 
         self.debugMessage(1, f"Credentials imported from {directory} correctly.")
+        self.debugMessage(2, f"Username:{self.spotifyUsername}\
+            \nClientID:{self.spotifyClientID}\
+            \nClientSecret:{self.spotifyClientSecret}\
+            \nDevice:{self.spotifyDevice}\
+            \nLibrary Directory:{self.libraryDirectory}\
+            \nRedirect URL:{self.redirectURL}\n")
 
 
     
@@ -111,6 +114,8 @@ class PSL():
 
             if not error:
                 self.debugMessage(1, 'UID:'+str(uid))
+        
+        return uid
 
     def play(self, uri):
 
@@ -131,10 +136,13 @@ class PSL():
         else:
             pass
 
-#--- Main ---#
+#--- Main(TEMP) ---#
+#Should only be a library. Leaving this just for testing.
+
 
 #Tell brayden to put this directory into somewhere not tracked by git for convience.
 #Also, we need to find a way to do a relative path to the python file. 'Cause, having
 #to do direct paths IN the code would ruin the "plug-and-play" -ability.
-main = PSL('')
-PSL.play('spotify:track:1NWK3gKPZPATIdSKLNGV8D')
+
+main = PSL('/home/nerk/Documents/Code/Keys/credentials.csv',debugStatus = 3,connect = False, platform = "PC")
+main.load()

@@ -4,10 +4,10 @@
 - Second priority is another 4-8 cartrages.
 
 Jacob:
--
--
--
--
+- News At 9 (Peter McPoland)
+- Strange Trails (Lord Huron)
+- Twin Fantasy (Car Seat Heradrest)
+- Vices & Virues (Panic! At The Disco)
 
 Brayden:
 - feel good inc (gorillaz)

@@ -110,4 +110,137 @@
 <br>
 [Link to pigpio GitHub](https://github.com/fivdi/pigpio#servo-control)
 
+## API Reference
+
+> **\_\_init__** *( credentialsDirectory = None, scope = 'user-read-private user-read-playback-state user-modify-playback-state', debugStatus = 1, connect = True, platform = "PI" )*
+
+Creates a PSL client. Will automaticly call *loadCredentials*.
+
+<br>
+
+**Parameters:**
+
+* **credentialsDirectory** - The path to the .csv file that contains the credentials required for login into the spotify system.
+
+* **scope** - The scope or "amount of privileges" that are being request from spotify for the specified account.
+
+* **debugStatus** - The verbosity of the debug console. The number inputed can range from 0 (no verbosity) to 3 (full verbosity).
+
+* **connect** - The option to turn on/off the *self.connect* internal function that submits the credentials to spotify.
+
+* **platform** - The platform that PSL is running for. The "PC" option disables the iporting of libraries specific to the raspberry pi.
+
+<br>
+<br>
+
+> **loadCredentials** *( directory = None )*
+
+Will automaticly read credentials from *directory* stored as a .csv and assigns credentail class variables. Automaticly called by the *\_\_init__* function.
+
+<br>
+
+**Parameters:**
+
+* **directory** - The path to the .csv file that contains the credentials required for login into the spotify system.
+
+<br>
+<br>
+
+> **load** *( )*
+
+Will automaticly read credentials from *self.libraryDirectory* (set by *loadCredentials*) stored as a .csv and assigns the directory class variable.
+<br>
+
+**Parameters:**
+
+* **None** - None.
+
+<br>
+<br>
+
+> **save** *( )*
+
+Will automaticly save credentials to *self.libraryDirectory* (set by *loadCredentials*) stored as a .csv.
+<br>
+
+**Parameters:**
+
+* **None** - None.
+
+<br>
+<br>
+
+> **connect** *( )*
+
+Use the defined credentials to establish a connection to spotify.
+<br>
+
+**Parameters:**
+
+* **None** - None.
+
+<br>
+<br>
+
+> **read** *( )*
+
+Will read what is currently on the nfc sensor (in the card slot) and return the *Unique Identification (UID)* or None.
+<br>
+
+**Parameters:**
+
+* **None** - None.
+
+<br>
+<br>
+
+> **play** *( uri = None )*
+
+Will play the given URI on the connected spotify device.
+<br>
+
+**Parameters:**
+
+* **uri** - The *Unique Identification (UID)* that is wished to be played.
+
+<br>
+<br>
+
+> **eject** *( )*
+
+Will actuate the servo to eject the disk that is currently installed into the PSL.
+<br>
+
+**Parameters:**
+
+* **None** - None.
+
+<br>
+<br>
+
+> **cleanUp** *( )*
+
+Will cleanup the *gpio* an *rfid* connections. 
+<br>
+
+**Parameters:**
+
+* **None** - None.
+
+<br>
+<br>
+
+> **debugMessage** *( verbosityLevel = None, message = None )*
+
+Will display a message if the verbosity level is equal to or bigger than the specified number.
+<br>
+
+**Parameters:**
+
+* **verbosityLevel** - The level that the message will be displayed at.
+
+* **message** - The message to notify the user.
+
+<br>
+
 <h2>Use</h2>
