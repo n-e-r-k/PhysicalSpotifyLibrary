@@ -3,7 +3,6 @@
 # Purpose: Displays the spotify album cover
 ##################################################################################################
 from tkinter import*
-from spotipy.oauth2 import SpotifyClientCredentials
 import os
 import sys
 import json
