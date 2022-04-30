@@ -12,23 +12,23 @@
 <tbody>
 <tr>
 <td>SDA</td>
-<td>GPIO8, CE0</td>
+<td>GPIO8, Pin:24, CE0</td>
 </tr>
 <tr>
 <td>SCK</td>
-<td>GPIO11, SCKL</td>
+<td>GPIO11, Pin:23, SCKL</td>
 </tr>
 <tr>
 <td>MOSI</td>
-<td>GPIO10, MOSI</td>
+<td>GPIO10, Pin:19, MOSI</td>
 </tr>
 <tr>
 <td>MISO</td>
-<td>GPIO9, MISO</td>
+<td>GPIO9, Pin:21, MISO</td>
 </tr>
 <tr>
 <td>IRQ</td>
-<td>GPIO24</td>
+<td>GPIO24, Pin:18</td>
 </tr>
 <tr>
 <td>GND</td>
@@ -36,7 +36,7 @@
 </tr>
 <tr>
 <td>RST</td>
-<td>GPIO25</td>
+<td>GPIO25, Pin:22</td>
 </tr>
 <tr>
 <td>3.3V</td>
@@ -48,8 +48,6 @@
 <br>
 <h3>Button</h3>
 
-<br><p><strong>Check this section for accuracy!!! ---V</strong></p><br>
-
 <table>
 <thead>
 <tr>
@@ -60,7 +58,7 @@
 <tbody>
 <tr>
 <td>Eject Button</td>
-<td>GPIOX, 220ohm Pullup</td>
+<td>GPIO12, Pin:32, 220ohm Pullup</td>
 
 </tr>
 <tr>
@@ -91,15 +89,18 @@
 </tr>
 <tr>
 <td>Orange<sup>PWM</sup></td>
-<td>GPIOX</td>
+<td>GPIO16, Pin:36</td>
 </tr>
 </tbody>
 </table>
 
 <h2>Printing the Case</h2>
 
+The case prints in four seperate parts with a total print time totaling around 16ish hours (on an Ender3 Pro). The cartridges each take about an hour each to print (on an Ender3 Pro). The 3D design is made to use as little supports as possible. 
+
 <h2>Assembly</h2>
 
+Assembly is done using stadard metric screws and your finished electronic harness.
 
 <h2>Software</h2>
     <p>The software is built in python and running on top of Raspbian Linux in a light, terminal-only configuration. It reads cards using the pi-rc522 library. From there depending on the information stored the local {table databace}-Replace will ouput a code that the Spotipy library will ask spotify to play on specified device. While this is happening, the Raspberry Pi is also repeatedly checking to see if the [EJECT] button is pressed. If the button is being pressed, the pigpio library will control the servo to eject the disk. </p>

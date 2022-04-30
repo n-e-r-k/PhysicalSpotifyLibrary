@@ -5,6 +5,7 @@
 import spotipy
 import spotipy.util as util
 
+import time
 import os
 import csv
 from json.decoder import JSONDecodeError
@@ -16,11 +17,23 @@ class PSL():
         self.scope = scope
         self.debugStatus = debugStatus
 
+        self.button = 32
+        self.servo = 36
+
         #Setting platform
         if platform == "PC":
             pass
         elif platform == "PI":
+            #Make the imports more standard?
+            import RPi.GPIO
             from pirc522 import RFID
+
+            self.GPIO = RPi()
+            self.GPIO.setmode(self.GPIO.BCM)
+            self.GPIO.setup(self.servo, self.GPIO.OUT)
+
+            self.pwm = GPIO.PWM(self.servo, 50)
+            self.pwm.start(0)
             self.rfid = RFID()
 
         #Establish connection to spotify
@@ -62,8 +75,6 @@ class PSL():
             \nLibrary Directory:{self.libraryDirectory}\
             \nRedirect URL:{self.redirectURL}\n")
 
-
-    
     def load(self):
 
         self.database = {}
@@ -106,6 +117,8 @@ class PSL():
         #If thats the case then we will have to move the library
         #to "MFRC522-python" I think it's on github.
 
+        #Check if there is a timeout part of that function.
+
         self.rfid.wait_for_tag()
         (error, tag_type) = self.rfid.request()
 
@@ -126,6 +139,15 @@ class PSL():
 
     def eject(self):
         pass
+    def setAngle(self, angle):
+        duty = anlge / 18 + 2
+        #ISSUE: the GPIO library is only imported for __init__?
+        #I think.
+        GPIO.output(self.servo, True)
+        self.pwm.ChangeDutyCycle(duty)
+        time.sleep(1)
+        GPIO.output(self.servo, False)
+        self.pwm.ChangeDutyCycle(0)
 
     def cleanUp(self):
         self.rfid.cleanup()
@@ -144,5 +166,5 @@ class PSL():
 #Also, we need to find a way to do a relative path to the python file. 'Cause, having
 #to do direct paths IN the code would ruin the "plug-and-play" -ability.
 
-main = PSL('/home/nerk/Documents/Code/Keys/credentials.csv',debugStatus = 3,connect = False, platform = "PC")
+main = PSL('/home/nerk/Documents/Code/Keys/credentials.csv', debugStatus = 3, connect = False, platform = "PC")
 main.load()
