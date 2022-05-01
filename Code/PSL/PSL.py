@@ -22,24 +22,28 @@ class PSL():
 
         #Setting platform
         if platform == "PC":
-            pass
+            self.platform = "PC"
         elif platform == "PI":
+            self.platform = "PI"
             #Make the imports more standard?
             import RPi.GPIO
             from pirc522 import RFID
 
-            self.GPIO = RPi()
+            self.GPIO = RPi.GPIO()
             self.GPIO.setmode(self.GPIO.BCM)
             self.GPIO.setup(self.servo, self.GPIO.OUT)
 
-            self.pwm = GPIO.PWM(self.servo, 50)
+            self.pwm = self.GPIO.PWM(self.servo, 50)
             self.pwm.start(0)
+
             self.rfid = RFID()
 
         #Establish connection to spotify
         self.loadCredentials(credentialsDirectory)
         if connect:
             self.connect()
+        else:
+            pass
         
 
     def loadCredentials(self, directory):
@@ -134,23 +138,35 @@ class PSL():
 
         #Currently don't know if you can play any type of uri or
         #if only for single tracks.
+
+        if uri == None:
+            #Pause playback?
+            pass
         
-        self.spotifyObject.start_playback(uris=[uri])
+        self.spotifyObject.start_playback()
+
+    def pause(self):
+        
+        self.spotifyObject.pause_playback()
 
     def eject(self):
-        pass
+        self.setAngle(0)
+        self.setAngle(90)
+
     def setAngle(self, angle):
-        duty = anlge / 18 + 2
-        #ISSUE: the GPIO library is only imported for __init__?
-        #I think.
-        GPIO.output(self.servo, True)
+        duty = angle / 18 + 2
+        self.GPIO.output(self.servo, True)
         self.pwm.ChangeDutyCycle(duty)
         time.sleep(1)
-        GPIO.output(self.servo, False)
+        self.GPIO.output(self.servo, False)
         self.pwm.ChangeDutyCycle(0)
 
     def cleanUp(self):
         self.rfid.cleanup()
+        if self.platform == "PI":
+            self.GPIO.cleanup()
+        else:
+            pass
 
     def debugMessage(self, verbosityLevel, message):
         if self.debugStatus >= verbosityLevel:
@@ -166,5 +182,5 @@ class PSL():
 #Also, we need to find a way to do a relative path to the python file. 'Cause, having
 #to do direct paths IN the code would ruin the "plug-and-play" -ability.
 
-main = PSL('/home/nerk/Documents/Code/Keys/credentials.csv', debugStatus = 3, connect = False, platform = "PC")
-main.load()
+#main = PSL('/home/nerk/Documents/Code/Keys/credentials.csv', debugStatus = 3, connect = False, platform = "PC")
+#main.load()
