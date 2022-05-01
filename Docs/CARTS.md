@@ -1,4 +1,4 @@
-12 Cartridges
+16 Cartridges
 
 - Priority on the first 12 cartragies, est. time 18hrs to print.
 - Second priority is another 4-8 cartrages.
@@ -8,12 +8,14 @@ Jacob:
 - Strange Trails (Lord Huron)
 - Twin Fantasy (Car Seat Heradrest)
 - Vices & Virues (Panic! At The Disco)
+-
 
 Brayden:
 - feel good inc (gorillaz)
 - Seven Nation Army (The White Stripes)
 - Soul to squeeze (red hot chili peppers) "For christian"
 - Come back to earth (Mac) "For reese"
+- Rocking all night playlist (Fish)
 
 Generic (Sinlges):
 - Hand of God (Jon Bellion)
@@ -23,3 +25,4 @@ Generic (Sinlges):
 
 Easter Egg:
 - Ads
+- Rick roll
