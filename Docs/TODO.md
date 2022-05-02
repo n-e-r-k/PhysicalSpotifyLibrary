@@ -10,16 +10,16 @@
 
     - PSL
 
-        - PI-RC522 RFID Integration
+        - PI-RC522 RFID Integration *
 
-        - Spotipy Auth Integration
+        - Spotipy Auth Integration *
 
-        - Servo control with button input
+        - Servo control with button input *
 
         - Database Load/Save
 
     - PSL_Player
-        - Taking the PSL library create the disk control logic.
+        - Taking the PSL library create the disk control logic. *
         
         - Check the "Living with Cyber" given linux image and try to understand how they connect to LaTechWPA2.
 
@@ -40,11 +40,11 @@
 
     - Two Advertisements (1980s themed) (JB MicroComputing)
 
-    - Front Decal
+    - Front Decal *
 
-    - Brand Work??
+    - Brand Work?? *
 
-    - Album Diskette Artwork
+    - Album Diskette Artwork *
 
 <h1>Development Documentation</h1>
 
