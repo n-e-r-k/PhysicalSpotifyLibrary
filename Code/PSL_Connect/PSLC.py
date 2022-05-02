@@ -6,75 +6,49 @@ from tkinter import*
 import os
 import sys
 import json
+from turtle import update
 import spotipy 
 import webbrowser
 import spotipy.util as util
+import PSL
 from json.decoder import JSONDecodeError
 
 
 class PSL_C(Canvas): 
+    WIDTH = 600
+    HEIGHT = 520
+    window = Tk()
+    window.geometry("{}x{}".format(WIDTH,HEIGHT))
+    window.title("PSL Connect")
+    
     # TODO set up init function here
     def __init__(self):
 
-        username = 'Fish'
-        SPOTIPY_CLIENT_ID = ''
-        SPOTIPY_CLIENT_SECRET=''
-        SPOTIPY_REDIRECT_URI='https://www.google.com/'
-        scope = 'user-read-private user-read-playback-state user-modify-playback-state'
+        main = PSL.PSL('<full path to credentials directory>', debugstatus = 3)
 
-        self.spotify = spotipy.Spotify(util.prompt_for_user_token(username, scope, SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET, SPOTIPY_REDIRECT_URI))
+
         # Get track information
-        track = spotifyObject.current_user_playing_track()
+        track = main.spotifyObject.current_user_playing_track()
         print(json.dumps(track, sort_keys=True, indent=4))
         print()
 
-    def artist():
+    def artist(self, track):
         artist = track['item']['artists'][0]['name']
-        track = track['item']['name']
+        return artist
 
-        if artist !="":
-            print("Currently playing " + artist + " - " + track)
-#################################################################################
-#
-# Main Code
-#
-#################################################################################
-# sets size of the canvas
-WIDTH = 600
-HEIGHT = 520
-window = Tk()
-window.geometry("{}x{}".format(WIDTH,HEIGHT))
-window.title("PSL Connect")
-p = PSL_C()
-e = Entry(window)
-e.pack
+    def song(self, track):
+        song = track['item']['name']
+        return song
 
-def callback():
-        f = open("htfl.txt","a") #Replace htfl with artist name and song
-        f.write(e.get())
-        print (e.get())
-
-b = Button(master, text="get", width=10, command=callback)
-
-b.pack()
-
-
-
-file = open() #Have it read the artist and song name out
-
-#print(file.read(1))
-a = file.read()
-b = file.read()
-print(file.read())
-
-T = Text(master, height=9, width=30)
-T.insert(END,a)
-T.pack()
-
-def update():
-    with open() as f:
-        data = f.read()
-        T.delete("1.0", "end")  # if you want to remove the old data
-        T.insert(END,data)
-    T.after(1000, update)
-window.mainloop()
+    song_name = Label(window, text = song)
+    artist_name = Label(window, text = artist)
+    song_name.pack
+    artist_name.pack
+    def update(song_name, artist_name, song, artist, window):
+        song_name[song]
+        window.after(1000, update)
+        
+        artist_name[artist]
+        window.after(1000, update)
+    update()
+    window.mainloop()
