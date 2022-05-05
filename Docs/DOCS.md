@@ -1,3 +1,7 @@
+# Documentation
+
+## Introduction
+Welcome everyone! This documentation includes, the full instructions on how to create your very own Physical Spotify Library (PSL), an API reference sheet for the PSL library, and a deeper explanation on how everything works. If you have any questions or would like to make any changes please submit a pull request and I will get back to you as soon as possible. 
 <h2>Wiring</h2>
 
 <h3>RC522</h3>
@@ -96,11 +100,11 @@
 
 <h2>Printing the Case</h2>
 
-The case prints in four seperate parts with a total print time totaling around 16ish hours (on an Ender3 Pro). The cartridges each take about an hour each to print (on an Ender3 Pro). The 3D design is made to use as little supports as possible. 
+The case prints in four seperate parts with a total print time totaling around 16ish hours (on an Ender3 Pro). The cartridges each take about an hour each to print (on an Ender3 Pro). The 3D model is designed to use as little supports as possible. 
 
 <h2>Assembly</h2>
 
-Assembly is done using stadard metric screws and your finished electronic harness.
+Assembly is done using standard metric screws and nuts. our finished electronic harness.
 
 <h2>Software</h2>
     <p>The software is built in python and running on top of Raspbian Linux in a light, terminal-only configuration. It reads cards using the pi-rc522 library. From there depending on the information stored the local {table databace}-Replace will ouput a code that the Spotipy library will ask spotify to play on specified device. While this is happening, the Raspberry Pi is also repeatedly checking to see if the [EJECT] button is pressed. If the button is being pressed, the pigpio library will control the servo to eject the disk. </p>

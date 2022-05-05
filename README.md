@@ -1,14 +1,17 @@
-# Physical Spotify Library (PSL)
-<h2>Project Name</h2>
+# *Physical Spotify Library (PSL)*
+
+![PSL](https://github.com/n-e-r-k/PhysicalSpotifyLibrary/blob/main/Media/pslHeader.jpg?raw=true)
 
 *Physical Spotify Library (PSL)*
 
-<h2>Student Names</h2>
+## [Documentation/Build Guide](https://github.com/n-e-r-k/PhysicalSpotifyLibrary/blob/main/Docs/DOCS.md)
 
-<ul>
-    <li>Jacob France</li>
-    <li>Brayden Fisher</li>
-</ul>
+<h2>Team Members</h2>
+
+
+- **Jacob France**
+- **Brayden Fisher**
+
 
 <h2>Project Description</h2>
 
@@ -16,19 +19,20 @@
 
 <h2>Technical Specifications</h2>
 
-<ul>
-    <li>Raspberry Pi Zero W</li>
-    <li>RC522 RFID Module</li>
-    <li>SG90 9g Micro Servo</li>
-</ul>
+
+- Raspberry Pi Zero W
+- RC522 RFID Module
+- SG90 9g Micro Servo
+- Based on a fully documented custom built API
+- Custom Chassis
+- Modular Software and Hardware 
 
 <h2>Dependencies/Requirements</h2>
 
 <ul>
     <li>python-3.9.7</li>
     <li>spotipy-2.19.0</li>
-    <li>pigpio-3.3.1</li>
     <li>pi-rc522-2.2.1</li>
-    <li>spidev-x.x.x</li>
-    <li>RPI.GPIO-x.x.x {yeah i dont know if this is the same as pigpio. Needed for pi-rc522}</li>
+    <li>spidev</li>
+    <li>RPI.GPIO</li>
 </ul>
