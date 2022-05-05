@@ -1,5 +1,5 @@
 #PSL_Play
-from CSC132MusicBox.Code import PSL
+from PSL import PSL
 import time
 #Fix the split import so we don't have to add PSL after PSL.
 
