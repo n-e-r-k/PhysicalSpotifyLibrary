@@ -113,8 +113,8 @@ class PSL():
             exit()
         self.debugMessage(2, f"Connection to SPOTIFY established.\nPermissions aquired:\n{self.scope}")
 
-    @timeout
-    def _pull(self):
+    @timeout(10)
+    def pull(self):
         self.rfid.wait_for_tag()
         (error, tag_type) = self.rfid.request()
 
@@ -132,13 +132,13 @@ class PSL():
 
     def read(self):
         try:
-            product = self._pull()
+            product = self.pull()
             return product
         except:
             return None
 
     def write(self, uri):
-        cid = self._pull()
+        cid = self.pull()
         self.database[cid] = uri
 
     def play(self, uri):
