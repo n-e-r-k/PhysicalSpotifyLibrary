@@ -6,13 +6,12 @@ from distutils.log import error
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 import spotipy.util as util
+import timeout
 
 import time
 import os
 import csv
 from json.decoder import JSONDecodeError
-import RPi.GPIO as GPIO
-from pirc522 import RFID
 
 #--- Definitions ---#
 class PSL():
@@ -30,6 +29,9 @@ class PSL():
         elif platform == "PI":
             self.platform = "PI"
             
+            import RPi.GPIO as GPIO
+            from pirc522 import RFID
+
             GPIO.setmode(GPIO.BOARD)
             GPIO.setup(self.servo, GPIO.OUT)
             GPIO.setup(self.button, GPIO.IN)
@@ -111,15 +113,8 @@ class PSL():
             exit()
         self.debugMessage(2, f"Connection to SPOTIFY established.\nPermissions aquired:\n{self.scope}")
 
-    def read(self):
-
-        #I suspect that this wait_for_tag() will be and issue (Due to taking up the 
-        # process and not timing out making us unable to have a "EMPTY SLOT" state)
-        #If thats the case then we will have to move the library
-        #to "MFRC522-python" I think it's on github.
-
-        #Check if there is a timeout part of that function.
-
+    @timeout(10)
+    def _pull(self):
         self.rfid.wait_for_tag()
         (error, tag_type) = self.rfid.request()
 
@@ -134,6 +129,17 @@ class PSL():
             result += section
         
         return uid
+
+    def read(self):
+        try:
+            product = self._pull()
+            return product
+        except:
+            return None
+
+    def write(self, uri):
+        cid = self._pull()
+        self.database[cid] = uri
 
     def play(self, uri):
 
@@ -175,7 +181,3 @@ class PSL():
             print(message)
         else:
             pass
-
-#--- Main(TEMP) ---#
-            #Attempt again
-#
