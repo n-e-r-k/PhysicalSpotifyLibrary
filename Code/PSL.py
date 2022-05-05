@@ -36,7 +36,7 @@ class PSL():
             self.pwm.start(0)
             #Made it to here ---
 
-            self.rfid = RFID()
+            self.rfid = RFID(pin_mode = GPIO.BCM)
             print("6")
 
         print("Finsihed setting platform.")
