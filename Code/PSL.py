@@ -99,13 +99,14 @@ class PSL():
         pass
 
     def save(self):
-        w = csv.writer(open(self.libraryDirectory, "w"))
+        file = open(self.libraryDirectory, "w")
+        w = csv.writer(file)
 
         # {CID:URI}
         for cid, uri in self.database.items():
             w.writerow([cid, uri])
 
-        w.close()
+        file.close()
 
     def connect(self):
         try:
