@@ -126,9 +126,9 @@ class PSL():
 
         result = ''
         for section in uid:
-            result += section
+            result += str(section)
         
-        return uid
+        return int(uid)
 
     def read(self):
         try:
