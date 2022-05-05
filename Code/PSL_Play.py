@@ -1,12 +1,10 @@
 #PSL_Play
 from PSL import PSL
 import time
-#Fix the split import so we don't have to add PSL after PSL.
 
 #--- INIT ---#
 
 main = PSL('/home/pi/credentials.csv', debugStatus = 3)
-PSL.debugMessage(0, "Credentials Found")
 main.eject()
 main.load()
 

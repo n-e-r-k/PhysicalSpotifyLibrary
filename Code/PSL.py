@@ -19,8 +19,8 @@ class PSL():
         self.scope = scope
         self.debugStatus = debugStatus
 
-        self.button = 12
-        self.servo = 13
+        self.button = 32
+        self.servo = 33
 
         #Setting platform
         if platform == "PC":
@@ -28,7 +28,7 @@ class PSL():
         elif platform == "PI":
             self.platform = "PI"
             
-            GPIO.setmode(GPIO.BCM)
+            GPIO.setmode(GPIO.BOARD)
             GPIO.setup(self.servo, GPIO.OUT)
             GPIO.setup(self.button, GPIO.IN)
 
@@ -36,8 +36,7 @@ class PSL():
             self.pwm.start(0)
             #Made it to here ---
 
-            self.rfid = RFID(pin_mode = GPIO.BCM)
-            print("6")
+            self.rfid = RFID()
 
         print("Finsihed setting platform.")
 
