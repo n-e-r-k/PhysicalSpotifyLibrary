@@ -6,6 +6,7 @@ from distutils.log import error
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 import spotipy.util as util
+from CSC132MusicBox.Code.Legacy.CRD import playAlbum
 import timeout
 
 import time
@@ -116,24 +117,24 @@ class PSL():
             exit()
         self.debugMessage(2, f"Connection to SPOTIFY established.\nPermissions aquired:\n{self.scope}")
 
-    @timeout.timeout()
+    @timeout.timeout(5)
     def pull(self):
-        self.rfid.wait_for_tag()
-        (error, tag_type) = self.rfid.request()
-
-        if not error:
-            (error, uid) = self.rfid.anticoll()
+        result = ''
+        while result == '':
+            self.rfid.wait_for_tag()
+            (error, tag_type) = self.rfid.request()
 
             if not error:
-                self.debugMessage(1, 'UID:'+str(uid))
+                (error, uid) = self.rfid.anticoll()
 
-            result = ''
-            for section in uid:
-                result += str(section)
-        
-            return result
-        else:
-            pass
+                if not error:
+                    self.debugMessage(1, 'UID:'+str(uid))
+
+            
+                for section in uid:
+                    result += str(section) 
+        return result
+
 
     def read(self):
         try:
@@ -147,18 +148,33 @@ class PSL():
         self.database[cid] = uri
 
     def play(self, uri):
+        try:
+            self.playAlbum(uri)
+        except:
+            self.playTrack(uri)
 
-        #Currently don't know if you can play any type of uri or
-        #if only for single tracks.
+    def playTrack(self, uri):
+        if uri != None:
+            self.spotifyObject.start_playback(self.spotifyDevice, uris = [uri])
+        else:
+            self.spotifyObject.start_playback(self.spotifyDevice)
 
-        if uri == None:
-            self.spotifyObject.pause_playback()
-            pass
-        
-        self.spotifyObject.start_playback(self.spotifyDevice, uris = [uri])
+    def playAlbum(self, uri):
+        z = 0
+        trackURIS = []
+        if uri != None:
+            trackResults = self.spotifyObject.album_tracks(uri)
+            trackResults = trackResults['items']
+            self.debugMessage(1,'Playing:')
+            for item in trackResults:
+                self.debugMessage(1, str(z) + ': ' +item['name'])
+                trackURIS.append(item['uri'])
+                z+=1
+            self.spotifyObject.start_playback(self.spotifyDevice, None, trackURIS)
+        else:
+            self.spotifyObject.start_playback(self.spotifyDevice)
 
     def pause(self):
-        
         self.spotifyObject.pause_playback()
 
     def eject(self):
