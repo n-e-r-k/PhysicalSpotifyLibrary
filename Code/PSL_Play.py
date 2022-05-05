@@ -9,7 +9,7 @@ main.eject()
 main.load()
 
 DC = True
-currentUID = None
+currentUID = '000000000'
 #END OF INIT
 
 main.debugMessage(0,"PASSED INIT",)
