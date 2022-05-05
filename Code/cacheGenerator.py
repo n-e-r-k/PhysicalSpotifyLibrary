@@ -13,7 +13,7 @@ spotifyDevice = ''
 libraryDirectory = ''
 redirectURL = ''
 
-def loadCredentials(self, directory):
+def loadCredentials(directory):
 
         #Open and read from the csv in the given directory.
         #Then assign the class variables from the information 
@@ -55,7 +55,7 @@ def generateCache(spotifyUsername, spotifyClientID, spotifyClientSecret, redirec
         return token
 
 def main():
-    spotifyUsername, spotifyClientID, spotifyClientSecret, redirectURL = loadCredentials()
+    spotifyUsername, spotifyClientID, spotifyClientSecret, redirectURL = loadCredentials('/home/nerk/Documents/Code/Keys/credentials.csv')
     token = generateCache(spotifyUsername, spotifyClientID, spotifyClientSecret, redirectURL)
     spotipy.Spotify(auth=token)
     print("Finished")
