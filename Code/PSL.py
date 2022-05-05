@@ -137,7 +137,7 @@ class PSL():
         #if only for single tracks.
 
         if uri == None:
-            #Pause playback?
+            self.spotifyObject.pause_playback()
             pass
         
         self.spotifyObject.start_playback()
@@ -149,6 +149,7 @@ class PSL():
     def eject(self):
         self.setAngle(0)
         self.setAngle(90)
+        self.setAngle(0)
 
     def setAngle(self, angle):
         duty = angle / 18 + 2
