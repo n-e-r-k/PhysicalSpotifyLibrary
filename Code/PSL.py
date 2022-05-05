@@ -131,7 +131,7 @@ class PSL():
             for section in uid:
                 result += str(section)
         
-            return int(result)
+            return result
         else:
             pass
 
