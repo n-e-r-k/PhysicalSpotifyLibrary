@@ -9,6 +9,8 @@ import time
 import os
 import csv
 from json.decoder import JSONDecodeError
+import RPi.GPIO as GPIO
+from pirc522 import RFID
 
 #--- Definitions ---#
 class PSL():
@@ -26,12 +28,8 @@ class PSL():
         elif platform == "PI":
             self.platform = "PI"
             #Make the imports more standard?
-            import RPi.GPIO
-            from pirc522 import RFID
-
-            self.GPIO = RPi.GPIO()
-            self.GPIO.setmode(self.GPIO.BCM)
-            self.GPIO.setup(self.servo, self.GPIO.OUT)
+            GPIO.setmode(GPIO.BCM)
+            GPIO.setup(self.servo, GPIO.OUT)
 
             self.pwm = self.GPIO.PWM(self.servo, 50)
             self.pwm.start(0)
@@ -175,12 +173,3 @@ class PSL():
             pass
 
 #--- Main(TEMP) ---#
-#Should only be a library. Leaving this just for testing.
-
-
-#Tell brayden to put this directory into somewhere not tracked by git for convience.
-#Also, we need to find a way to do a relative path to the python file. 'Cause, having
-#to do direct paths IN the code would ruin the "plug-and-play" -ability.
-
-#main = PSL('/home/nerk/Documents/Code/Keys/credentials.csv', debugStatus = 3, connect = False, platform = "PC")
-#main.load()

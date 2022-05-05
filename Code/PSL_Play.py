@@ -1,10 +1,10 @@
 #PSL_Play
-import PSL
+from CSC132MusicBox.Code import PSL
 import time
 #Fix the split import so we don't have to add PSL after PSL.
 
 #--- INIT ---#
-main = PSL.PSL('/home/nerk/Documents/Code/Keys/credentials.csv', debugStatus = 3)
+main = PSL('/home/nerk/Documents/Code/Keys/credentials.csv', debugStatus = 3)
 main.eject()
 main.load()
 
