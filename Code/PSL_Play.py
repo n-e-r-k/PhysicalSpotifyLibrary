@@ -4,12 +4,16 @@ import time
 #Fix the split import so we don't have to add PSL after PSL.
 
 #--- INIT ---#
-main = PSL('/home/nerk/Documents/Code/Keys/credentials.csv', debugStatus = 3)
+
+main = PSL('/home/pi/credentials.csv', debugStatus = 3)
+PSL.debugMessage(0, "Credentials Found")
 main.eject()
 main.load()
 
 currentUID = None
 #END OF INIT
+
+PSL.debugMessage(0,"PASSED INIT")
 
 #--- Main ---#
 while True:
