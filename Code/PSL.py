@@ -87,7 +87,7 @@ class PSL():
 
         self.database = {}
 
-        export = csv.DictReader(open(self.libraryDirectory, mode = 'r'))
+        export = csv.reader(open(self.libraryDirectory, mode = 'r'))
         
         for row in export:
             print(row)

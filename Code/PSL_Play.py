@@ -11,7 +11,7 @@ main.load()
 currentUID = None
 #END OF INIT
 
-PSL.debugMessage(0,"PASSED INIT")
+main.debugMessage(0,"PASSED INIT",)
 
 #--- Main ---#
 while True:
