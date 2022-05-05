@@ -52,6 +52,10 @@ while True:
     if UID != None:
         CurrentUID = UID
 
-    time.sleep(2)
+    if main.button == PSL.GPIO.LOW:
+        main.eject()
+        time.sleep(1)
+
+    time.sleep(1)
 
 

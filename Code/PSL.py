@@ -34,7 +34,7 @@ class PSL():
 
             GPIO.setmode(GPIO.BOARD)
             GPIO.setup(self.servo, GPIO.OUT)
-            GPIO.setup(self.button, GPIO.IN)
+            GPIO.setup(self.button, GPIO.IN, pull_up_down = GPIO.PUD_UP)
 
             self.pwm = GPIO.PWM(self.servo, 50)
             self.pwm.start(0)
@@ -116,7 +116,7 @@ class PSL():
             exit()
         self.debugMessage(2, f"Connection to SPOTIFY established.\nPermissions aquired:\n{self.scope}")
 
-    @timeout.timeout(5)
+    @timeout.timeout(2)
     def pull(self):
         result = ''
         while result == '':
