@@ -155,7 +155,7 @@ class PSL():
             self.spotifyObject.pause_playback()
             pass
         
-        self.spotifyObject.start_playback()
+        self.spotifyObject.start_playback(self.spotifyDevice, uris = uri)
 
     def pause(self):
         
