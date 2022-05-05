@@ -116,7 +116,7 @@ class PSL():
             exit()
         self.debugMessage(2, f"Connection to SPOTIFY established.\nPermissions aquired:\n{self.scope}")
 
-    @timeout.timeout(1)
+    @timeout.timeout(.5)
     def pull(self):
         result = ''
         while result == '':
