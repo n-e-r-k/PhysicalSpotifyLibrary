@@ -1,6 +1,6 @@
 # *Physical Spotify Library (PSL)*
 
-[PSL](https://github.com/n-e-r-k/PhysicalSpotifyLibrary/blob/main/Media/pslHeader.jpg?raw=true)
+![PSL](http://box2115.temp.domains/~cavionxy/wp-content/uploads/2022/05/pslHeader.jpg)
 
 *Physical Spotify Library (PSL)*
 
