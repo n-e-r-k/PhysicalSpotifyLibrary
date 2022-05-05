@@ -3,7 +3,7 @@
 
 #--- Import ---#
 import spotipy
-from spotipy.oauth2 import SpotifyClientCredentials
+from spotipy.oauth2 import SpotifyOAuth
 import spotipy.util as util
 
 import time
@@ -102,19 +102,19 @@ class PSL():
         
     def connect(self):
 
-        try:
-
-            #Attempt to connect to spotify if 
-            token = util.prompt_for_user_token(self.spotifyUsername, self.scope, client_id = self.spotifyClientID, client_secret = self.spotifyClientSecret, redirect_uri = self.redirectURL, show_dialog = True)
-
-        except (AttributeError, JSONDecodeError):
-
-            #Remove the local .cache-username file
-            os.remove(f".cache-{self.spotifyUsername}")
-            #Attempt again
-            token = util.prompt_for_user_token(self.spotifyUsername, self.scope)
-
-        self.spotifyObject = spotipy.Spotify(auth = token)
+#        try:
+#
+#            #Attempt to connect to spotify if 
+#            token = util.prompt_for_user_token(self.spotifyUsername, self.scope, client_id = self.spotifyClientID, client_secret = self.spotifyClientSecret, redirect_uri = self.redirectURL, show_dialog = True)
+#
+#        except (AttributeError, JSONDecodeError):
+#
+#            #Remove the local .cache-username file
+#            os.remove(f".cache-{self.spotifyUsername}")
+#            #Attempt again
+#            token = util.prompt_for_user_token(self.spotifyUsername, self.scope)
+#
+        self.spotifyObject = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=self.spotifyClientID, client_secret=self.spotifyClientSecret, redirect_uri=self.redirectURL, scope=self.scope, open_browser=False))
 
         self.debugMessage(2, f"Connection to SPOTIFY established.\nPermissions aquired:\n{self.scope}")
 
