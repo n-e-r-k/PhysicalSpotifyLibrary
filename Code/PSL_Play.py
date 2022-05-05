@@ -1,4 +1,5 @@
 #PSL_Play
+import RPi.GPIO as GPIO
 from PSL import PSL
 import time
 
@@ -52,7 +53,7 @@ while True:
     if UID != None:
         CurrentUID = UID
 
-    if main.button == PSL.GPIO.LOW:
+    if main.button == GPIO.LOW:
         main.eject()
         time.sleep(1)
 
