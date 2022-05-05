@@ -6,7 +6,6 @@ from distutils.log import error
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 import spotipy.util as util
-from CSC132MusicBox.Code.Legacy.CRD import playAlbum
 import timeout
 
 import time
