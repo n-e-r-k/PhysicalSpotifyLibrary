@@ -32,7 +32,7 @@ class PSL():
             GPIO.setmode(GPIO.BCM)
             GPIO.setup(self.servo, GPIO.OUT)
 
-            self.pwm = self.GPIO.PWM(self.servo, 50)
+            self.pwm = GPIO.PWM(self.servo, 50)
             self.pwm.start(0)
 
             self.rfid = RFID()
