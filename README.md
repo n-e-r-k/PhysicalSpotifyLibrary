@@ -10,6 +10,7 @@
 
 
 - **Jacob France**
+    - Contact me at: jnf019@latech.edu
 - **Brayden Fisher**
 
 
