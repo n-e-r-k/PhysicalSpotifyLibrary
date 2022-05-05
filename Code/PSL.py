@@ -19,8 +19,8 @@ class PSL():
         self.scope = scope
         self.debugStatus = debugStatus
 
-        self.button = 32
-        self.servo = 36
+        self.button = 12
+        self.servo = 16
 
         #Setting platform
         if platform == "PC":
@@ -29,13 +29,19 @@ class PSL():
             self.platform = "PI"
             #Make the imports more standard?
             GPIO.setmode(GPIO.BCM)
-            GPIO.cleanup()
+            print("1")
             GPIO.setup(self.servo, GPIO.OUT)
+            print("2")
+            GPIO.setup(self.button, GPIO.IN)
+            print("3")
 
             self.pwm = GPIO.PWM(self.servo, 50)
+            print("4")
             self.pwm.start(0)
+            print("5")
 
-            #self.rfid = RFID(pin_mode=GPIO.BCM)
+            self.rfid = RFID()
+            print("6")
 
         print("Finsihed setting platform.")
 
