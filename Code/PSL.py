@@ -102,7 +102,7 @@ class PSL():
         
     def connect(self):
 
-        clientCredentialManager = SpotifyClientCredentials()
+        clientCredentialManager = SpotifyClientCredentials(self.spotifyClientID, self.spotifyClientSecret))
 
 #        try:
 
@@ -116,7 +116,7 @@ class PSL():
 #            #Attempt again
 #            token = util.prompt_for_user_token(self.spotifyUsername, self.scope)
 
-        self.spotifyObject = spotipy.Spotify(client_credentials_manager=clientCredentialManager)
+        self.spotifyObject = spotipy.Spotify(client_credentials_manager=clientCredentialManager, )
 
         self.debugMessage(2, f"Connection to SPOTIFY established.\nPermissions aquired:\n{self.scope}")
 
