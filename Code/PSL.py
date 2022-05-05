@@ -88,6 +88,9 @@ class PSL():
         self.database = {}
 
         export = csv.DictReader(open(self.libraryDirectory, mode = 'r'))
+        
+        for row in export:
+            print(row)
 
         print(export)
 
@@ -96,7 +99,7 @@ class PSL():
     def save(self):
         w = csv.writer(open(self.libraryDirectory, "W"))
 
-        # {CDI:URI}
+        # {CID:URI}
         for cid, uri in self.database.items():
             w.writerow([cid, uri])
 
