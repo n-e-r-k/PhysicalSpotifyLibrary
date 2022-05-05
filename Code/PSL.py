@@ -102,7 +102,7 @@ class PSL():
         
     def connect(self):
 
-        clientCredentialManager = SpotifyClientCredentials(self.spotifyClientID, self.spotifyClientSecret))
+        clientCredentialManager = SpotifyClientCredentials(self.spotifyClientID, self.spotifyClientSecret)
 
 #        try:
 
