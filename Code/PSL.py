@@ -3,6 +3,7 @@
 
 #--- Import ---#
 import spotipy
+from spotipy.oauth2 import SpotifyClientCredentials
 import spotipy.util as util
 
 import time
@@ -101,19 +102,21 @@ class PSL():
         
     def connect(self):
 
-        try:
+        clientCredentialManager = SpotifyClientCredentials()
 
-            #Attempt to connect to spotify if 
-            token = util.prompt_for_user_token(self.spotifyUsername, self.scope, client_id = self.spotifyClientID, client_secret = self.spotifyClientSecret, redirect_uri = self.redirectURL)
+#        try:
 
-        except (AttributeError, JSONDecodeError):
+#            #Attempt to connect to spotify if 
+#            token = util.prompt_for_user_token(self.spotifyUsername, self.scope, client_id = self.spotifyClientID, client_secret = self.spotifyClientSecret, redirect_uri = self.redirectURL, show_dialog = True)
 
-            #Remove the local .cache-username file
-            os.remove(f".cache-{self.spotifyUsername}")
-            #Attempt again
-            token = util.prompt_for_user_token(self.spotifyUsername, self.scope)
+#        except (AttributeError, JSONDecodeError):
+#
+#            #Remove the local .cache-username file
+#            os.remove(f".cache-{self.spotifyUsername}")
+#            #Attempt again
+#            token = util.prompt_for_user_token(self.spotifyUsername, self.scope)
 
-        self.spotifyObject = spotipy.Spotify(auth=token)
+        self.spotifyObject = spotipy.Spotify(client_credentials_manager=clientCredentialManager)
 
         self.debugMessage(2, f"Connection to SPOTIFY established.\nPermissions aquired:\n{self.scope}")
 
@@ -178,3 +181,5 @@ class PSL():
             pass
 
 #--- Main(TEMP) ---#
+            #Attempt again
+#
