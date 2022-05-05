@@ -34,7 +34,7 @@ class PSL():
 
             GPIO.setmode(GPIO.BOARD)
             GPIO.setup(self.servo, GPIO.OUT)
-            GPIO.setup(self.button, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+            GPIO.setup(self.button, GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
 
             self.pwm = GPIO.PWM(self.servo, 50)
             self.pwm.start(0)

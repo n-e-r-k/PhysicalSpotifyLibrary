@@ -53,7 +53,8 @@ while True:
     if UID != None:
         CurrentUID = UID
 
-    if main.button == GPIO.LOW:
+    if GPIO.input(main.button) == GPIO.HIGH:
+        main.debugMessage(1, "Ejecting Disk...")
         main.eject()
         time.sleep(1)
 
