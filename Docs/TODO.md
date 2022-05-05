@@ -52,4 +52,4 @@
 
 <h1>Development Notes/Messages</h1>
 
-><strong>Jacob - </strong>This is a test message to show how this section can be used. Delete if something else needs to be said.
+><strong>Jacob - </strong> mac device code: 42cac252beb76fb3549ef2f3fb3b8510f8e626d8

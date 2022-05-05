@@ -36,7 +36,6 @@ class PSL():
 
             self.pwm = GPIO.PWM(self.servo, 50)
             self.pwm.start(0)
-            #Made it to here ---
 
             self.rfid = RFID()
 
@@ -150,10 +149,10 @@ class PSL():
 
     def setAngle(self, angle):
         duty = angle / 18 + 2
-        self.GPIO.output(self.servo, True)
+        GPIO.output(self.servo, True)
         self.pwm.ChangeDutyCycle(duty)
         time.sleep(1)
-        self.GPIO.output(self.servo, False)
+        GPIO.output(self.servo, False)
         self.pwm.ChangeDutyCycle(0)
 
     def cleanUp(self):
