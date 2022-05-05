@@ -128,6 +128,10 @@ class PSL():
 
             if not error:
                 self.debugMessage(1, 'UID:'+str(uid))
+
+        result = ''
+        for section in uid:
+            result += section
         
         return uid
 
