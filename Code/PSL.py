@@ -124,11 +124,13 @@ class PSL():
             if not error:
                 self.debugMessage(1, 'UID:'+str(uid))
 
-        result = ''
-        for section in uid:
-            result += str(section)
+            result = ''
+            for section in uid:
+                result += str(section)
         
-        return int(uid)
+            return int(uid)
+        else:
+            pass
 
     def read(self):
         try:
