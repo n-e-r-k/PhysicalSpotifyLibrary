@@ -12,6 +12,7 @@ from json.decoder import JSONDecodeError
 import RPi.GPIO as GPIO
 from pirc522 import RFID
 
+print("Import Complete.")
 #--- Definitions ---#
 class PSL():
     def __init__(self, credentialsDirectory, scope = 'user-read-private user-read-playback-state user-modify-playback-state', debugStatus = 1, connect = True, platform = "PI"):
@@ -36,8 +37,11 @@ class PSL():
 
             self.rfid = RFID()
 
+        print("Finsihed setting platform.")
+
         #Establish connection to spotify
         self.loadCredentials(credentialsDirectory)
+
         if connect:
             self.connect()
         else:
