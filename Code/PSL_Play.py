@@ -8,6 +8,7 @@ main = PSL('/home/pi/credentials.csv', debugStatus = 3)
 main.eject()
 main.load()
 
+DC = False
 currentUID = None
 #END OF INIT
 
