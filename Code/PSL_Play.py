@@ -13,8 +13,6 @@ currentUID = None
 
 main.debugMessage(0,"PASSED INIT",)
 
-exit()
-
 #--- Main ---#
 while True:
     UID = main.read()
