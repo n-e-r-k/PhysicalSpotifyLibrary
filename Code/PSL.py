@@ -90,9 +90,9 @@ class PSL():
         export = csv.reader(open(self.libraryDirectory, mode = 'r'))
         
         for row in export:
-            print(row)
+            self.database[row[0]] = row[1]
 
-        print(export)
+        self.debugMessage(1, f"Database loaded.\n{self.database}")
 
         pass
 
