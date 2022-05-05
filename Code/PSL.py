@@ -90,12 +90,12 @@ class PSL():
         self.database = {}
 
         export = csv.reader(open(self.libraryDirectory, mode = 'r'))
-        
-        for row in export:
-            self.database[row[0]] = row[1]
-
-        self.debugMessage(1, f"Database loaded.\n{self.database}")
-
+        try:
+            for row in export:
+                self.database[row[0]] = row[1]
+            self.debugMessage(1, f"Database loaded.\n{self.database}")
+        except:
+            self.debugMessage(0, "NO DATABASE FOUND.")
         pass
 
     def save(self):
