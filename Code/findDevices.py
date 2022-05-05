@@ -4,7 +4,7 @@ main = PSL('/home/pi/credentials.csv', debugStatus = 3)
 
 devNum = 0
 
-devices = main.spotifyObject.devices
+devices = main.spotifyObject.devices()
 
 for device in devices:
     print(f"device {devNum}:" + device)
