@@ -2,6 +2,7 @@
 # PSL Library
 
 #--- Import ---#
+from distutils.log import error
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 import spotipy.util as util
@@ -99,23 +100,13 @@ class PSL():
         # {CDI:URI}
         for cid, uri in self.database.items():
             w.writerow([cid, uri])
-        
+
     def connect(self):
-
-#        try:
-#
-#            #Attempt to connect to spotify if 
-#            token = util.prompt_for_user_token(self.spotifyUsername, self.scope, client_id = self.spotifyClientID, client_secret = self.spotifyClientSecret, redirect_uri = self.redirectURL, show_dialog = True)
-#
-#        except (AttributeError, JSONDecodeError):
-#
-#            #Remove the local .cache-username file
-#            os.remove(f".cache-{self.spotifyUsername}")
-#            #Attempt again
-#            token = util.prompt_for_user_token(self.spotifyUsername, self.scope)
-#
-        self.spotifyObject = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=self.spotifyClientID, client_secret=self.spotifyClientSecret, redirect_uri=self.redirectURL, scope=self.scope, open_browser=False))
-
+        try:
+            self.spotifyObject = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=self.spotifyClientID, client_secret=self.spotifyClientSecret, redirect_uri=self.redirectURL, scope=self.scope, open_browser=False))
+        except:
+            print("Cache not found. Generate or supply a chache to continue.")
+            exit()
         self.debugMessage(2, f"Connection to SPOTIFY established.\nPermissions aquired:\n{self.scope}")
 
     def read(self):
