@@ -58,6 +58,6 @@ while True:
         main.eject()
         time.sleep(1)
 
-    time.sleep(0.5)
+    time.sleep(1)
 
 
