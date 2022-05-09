@@ -11,8 +11,10 @@
 
 - **Jacob France**
     - Contact me at: jnf019@latech.edu
+    - Website: Cavion.xyz
+    
 - **Brayden Fisher**
-
+    - Contact me at: btf004@latech.edu
 
 <h2>Project Description</h2>
 
